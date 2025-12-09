@@ -1164,6 +1164,43 @@ ul {
     }
 }
 
+.contact-map-full {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.contact-map-full h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--primary-color);
+    text-align: center;
+}
+
+.contact-map-full .map-container {
+    height: 500px;
+    margin-top: 0;
+}
+
+@media (min-width: 768px) {
+    .contact-map-full {
+        padding: var(--spacing-xl);
+    }
+    
+    .contact-map-full .map-container {
+        height: 600px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contact-map-full .map-container {
+        height: 700px;
+    }
+}
+
 /* Contact form styles moved to .contact-form-header */
 
 .form-group {
