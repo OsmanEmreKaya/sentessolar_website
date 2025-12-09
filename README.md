@@ -36,7 +36,7 @@ Alpaslanlar Plaza No: 91/9
 P.K: 16270 Nilüfer
 Bursa/TÜRKİYE
 
-E-posta: info@sentessolar.com
+E-posta: operasyon@sentessolar.com
 Tel: +90 - 224-451 3030
 GSM: +90 - 542-481 1616
 
