@@ -1553,6 +1553,32 @@ ul {
     width: 100%;
     height: auto;
     display: block;
+    min-height: 300px;
+}
+
+@media (max-width: 767px) {
+    .map-section {
+        margin: 0 calc(-1 * var(--spacing-sm));
+    }
+    
+    .map-section .container {
+        padding: 0;
+        max-width: 100%;
+    }
+    
+    .turkey-map-container {
+        padding: var(--spacing-sm);
+        margin: 0;
+    }
+    
+    .turkey-map {
+        min-height: 600px;
+        width: 100%;
+    }
+    
+    .marker-label {
+        font-size: 16px;
+    }
 }
 
 .station-marker {
