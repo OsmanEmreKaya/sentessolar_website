@@ -289,6 +289,55 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================
+// Hero Title and Subtitle Text Animation
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const heroTitle = document.getElementById('heroTitle');
+    const heroSubtitle = document.getElementById('heroSubtitle');
+    
+    if (heroTitle && heroSubtitle) {
+        const textSets = [
+            {
+                title: 'Enerji Bağımsızlığınız İçin Çalışıyoruz',
+                subtitle: 'Güneş hikayeniz burada başlıyor!'
+            },
+            {
+                title: 'Faturalarınızı Güneşe Ödetelim',
+                subtitle: 'Güneşin gücüyle faturalarınızı sıfırlayın, geleceğinizi güvence altına alın.'
+            }
+        ];
+        
+        let currentIndex = 0;
+        
+        function changeText() {
+            // Fade out both title and subtitle
+            heroTitle.style.opacity = '0';
+            heroSubtitle.style.opacity = '0';
+            heroTitle.style.transition = 'opacity 0.5s ease';
+            heroSubtitle.style.transition = 'opacity 0.5s ease';
+            
+            setTimeout(() => {
+                // Change text
+                currentIndex = (currentIndex + 1) % textSets.length;
+                heroTitle.textContent = textSets[currentIndex].title;
+                heroSubtitle.textContent = textSets[currentIndex].subtitle;
+                
+                // Fade in both title and subtitle
+                setTimeout(() => {
+                    heroTitle.style.opacity = '1';
+                    heroSubtitle.style.opacity = '1';
+                }, 50);
+            }, 500);
+        }
+        
+        // Initial delay, then change text every 4 seconds
+        setTimeout(() => {
+            setInterval(changeText, 4000);
+        }, 3000); // First text set shows for 3 seconds, then changes
+    }
+});
+
+// ============================================
 // Header Scroll Effect
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
