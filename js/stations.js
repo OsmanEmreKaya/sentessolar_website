@@ -13,6 +13,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (!mapContainer) return;
     
+    // Function to ensure all labels are always visible
+    function ensureLabelsVisible() {
+        const labels = document.querySelectorAll('.marker-label');
+        labels.forEach(label => {
+            label.style.opacity = '1';
+            label.style.visibility = 'visible';
+            label.style.display = 'block';
+            label.setAttribute('opacity', '1');
+        });
+    }
+    
+    // Continuously ensure labels are visible (especially on mobile)
+    setInterval(ensureLabelsVisible, 100);
+    
+    // Also ensure on any touch event
+    document.addEventListener('touchstart', ensureLabelsVisible, true);
+    document.addEventListener('touchmove', ensureLabelsVisible, true);
+    document.addEventListener('touchend', ensureLabelsVisible, true);
+    
     markers.forEach(marker => {
         const city = marker.getAttribute('data-city');
         const count = marker.getAttribute('data-count');
@@ -71,8 +90,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Mobile touch events
         marker.addEventListener('touchstart', function(e) {
-            e.preventDefault();
+            // Don't prevent default on label elements
+            if (e.target.tagName !== 'text' && e.target.classList.contains('marker-label')) {
+                e.preventDefault();
+            }
             e.stopPropagation();
+            
+            // Immediately ensure labels are visible
+            ensureLabelsVisible();
+            
             // Clear any pending timeout
             clearTimeout(tooltipTimeout);
             
@@ -105,13 +131,31 @@ document.addEventListener('DOMContentLoaded', function() {
             markerDot.setAttribute('r', '14');
             markerDot.setAttribute('fill', '#ff8c00');
             
-            // Ensure label stays visible
-            const label = marker.querySelector('.marker-label');
-            if (label) {
-                label.style.opacity = '1';
-                label.style.visibility = 'visible';
-            }
+            // Force label to stay visible
+            ensureLabelsVisible();
         });
+        
+        // Also ensure labels stay visible on any interaction with marker
+        marker.addEventListener('click', function(e) {
+            if (e.target.tagName !== 'text' && e.target.classList.contains('marker-label')) {
+                e.preventDefault();
+            }
+            ensureLabelsVisible();
+        });
+        
+        // Prevent any event from hiding labels
+        const label = marker.querySelector('.marker-label');
+        if (label) {
+            label.addEventListener('touchstart', function(e) {
+                e.stopPropagation();
+                ensureLabelsVisible();
+            }, true);
+            
+            label.addEventListener('click', function(e) {
+                e.stopPropagation();
+                ensureLabelsVisible();
+            }, true);
+        }
         
         // Hide tooltip when clicking outside on mobile (only once, not per marker)
         if (!window.mapTooltipHandlerAdded) {
@@ -132,6 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                 }
+                // Always ensure labels are visible
+                ensureLabelsVisible();
             }, true);
         }
         

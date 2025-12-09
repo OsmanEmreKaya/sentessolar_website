@@ -1603,10 +1603,31 @@ ul {
     cursor: pointer;
 }
 
-.station-marker .marker-label {
+.station-marker .marker-label,
+.marker-label {
     opacity: 1 !important;
     visibility: visible !important;
     display: block !important;
+    pointer-events: none !important;
+}
+
+.station-marker text.marker-label {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    pointer-events: none !important;
+}
+
+/* Force labels to stay visible on mobile */
+@media (max-width: 767px) {
+    .station-marker .marker-label,
+    .marker-label,
+    .station-marker text {
+        opacity: 1 !important;
+        visibility: visible !important;
+        display: block !important;
+        pointer-events: none !important;
+    }
 }
 
 .marker-dot {
