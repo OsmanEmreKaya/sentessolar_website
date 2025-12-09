@@ -1603,6 +1603,12 @@ ul {
     cursor: pointer;
 }
 
+.station-marker .marker-label {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
 .marker-dot {
     transition: r 0.3s ease, fill 0.3s ease;
 }
@@ -1632,6 +1638,8 @@ ul {
     paint-order: stroke fill;
     font-size: 20px;
     font-weight: bold;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .map-tooltip {
