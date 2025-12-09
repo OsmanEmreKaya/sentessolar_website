@@ -510,6 +510,16 @@ ul {
     animation: slideRight 35s linear infinite;
 }
 
+@media (max-width: 767px) {
+    .companies-slider-row-1 {
+        animation: slideLeft 20s linear infinite;
+    }
+    
+    .companies-slider-row-2 {
+        animation: slideRight 18s linear infinite;
+    }
+}
+
 .companies-slider-row:hover {
     animation-play-state: paused;
 }
@@ -1501,6 +1511,14 @@ ul {
     .hero-subtitle {
         font-size: 1.125rem;
         min-height: 3rem;
+    }
+    
+    .hero-video {
+        display: none;
+    }
+    
+    .hero {
+        background: linear-gradient(135deg, rgba(31, 78, 45, 0.95) 0%, rgba(38, 70, 83, 0.95) 100%);
     }
     
     .section-title {

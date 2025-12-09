@@ -1,4 +1,46 @@
 // ============================================
+// Conditional Video Loading (Desktop Only)
+// ============================================
+document.addEventListener('DOMContentLoaded', function() {
+    const heroSection = document.querySelector('.hero');
+    const videoElement = document.querySelector('.hero-video');
+    
+    // Check if mobile (screen width <= 767px)
+    function isMobile() {
+        return window.innerWidth <= 767;
+    }
+    
+    // Remove video on mobile to improve performance
+    if (isMobile() && videoElement) {
+        videoElement.remove();
+    }
+    
+    // Also handle resize events
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            if (isMobile() && videoElement && videoElement.parentNode) {
+                videoElement.remove();
+            } else if (!isMobile() && !videoElement && heroSection) {
+                // Re-add video if resized to desktop (optional)
+                const newVideo = document.createElement('video');
+                newVideo.className = 'hero-video';
+                newVideo.autoplay = true;
+                newVideo.muted = true;
+                newVideo.loop = true;
+                newVideo.playsInline = true;
+                newVideo.innerHTML = `
+                    <source src="assets/videos/solar-panels.mp4" type="video/mp4">
+                    <source src="assets/videos/solar-panels.webm" type="video/webm">
+                `;
+                heroSection.insertBefore(newVideo, heroSection.firstChild);
+            }
+        }, 250);
+    });
+});
+
+// ============================================
 // Mobile Menu Toggle
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
