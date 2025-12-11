@@ -35,10 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
     markers.forEach(marker => {
         const city = marker.getAttribute('data-city');
         const count = marker.getAttribute('data-count');
-        const markerDot = marker.querySelector('.marker-dot');
-        const markerCircle = marker.querySelector('circle');
+        const markerIcon = marker.querySelector('.marker-icon');
         
-        if (!markerDot || !markerCircle) return;
+        if (!markerIcon) return;
         
         let tooltipTimeout;
         
@@ -46,13 +45,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Clear any pending timeout
             clearTimeout(tooltipTimeout);
             
-            // Get marker position - use the circle element for stable positioning
-            const markerRect = markerCircle.getBoundingClientRect();
+            // Get marker position - use the image element for stable positioning
+            const markerRect = markerIcon.getBoundingClientRect();
             const mapRect = mapContainer.getBoundingClientRect();
             
             // Set tooltip content
             tooltipCity.textContent = city || 'Bilinmeyen Şehir';
-            tooltipCount.textContent = `${count} Santral`;
+            tooltipCount.textContent = '';
             
             // Calculate tooltip position relative to map container
             // Position tooltip above the marker
@@ -72,9 +71,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 tooltip.style.top = (markerRect.top - mapRect.top - actualHeight - 5) + 'px';
             });
             
-            // Update marker appearance
-            markerDot.setAttribute('r', '14');
-            markerDot.setAttribute('fill', '#ff8c00');
+            // Update marker appearance - scale up on hover
+            markerIcon.setAttribute('width', '36');
+            markerIcon.setAttribute('height', '36');
+            markerIcon.style.transform = 'translate(-3px, -3px)';
         });
         
         marker.addEventListener('mouseleave', function() {
@@ -84,8 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
             
             // Reset marker appearance
-            markerDot.setAttribute('r', '10');
-            markerDot.setAttribute('fill', '#086838');
+            markerIcon.setAttribute('width', '30');
+            markerIcon.setAttribute('height', '30');
+            markerIcon.style.transform = 'translate(0, 0)';
         });
         
         // Mobile touch events
@@ -102,13 +103,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Clear any pending timeout
             clearTimeout(tooltipTimeout);
             
-            // Get marker position - use the circle element for stable positioning
-            const markerRect = markerCircle.getBoundingClientRect();
+            // Get marker position - use the image element for stable positioning
+            const markerRect = markerIcon.getBoundingClientRect();
             const mapRect = mapContainer.getBoundingClientRect();
             
             // Set tooltip content
             tooltipCity.textContent = city || 'Bilinmeyen Şehir';
-            tooltipCount.textContent = `${count} Santral`;
+            tooltipCount.textContent = '';
             
             // Calculate tooltip position relative to map container
             const tooltipX = markerRect.left - mapRect.left + (markerRect.width / 2);
@@ -127,9 +128,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 tooltip.style.top = (markerRect.top - mapRect.top - actualHeight - 5) + 'px';
             });
             
-            // Update marker appearance
-            markerDot.setAttribute('r', '14');
-            markerDot.setAttribute('fill', '#ff8c00');
+            // Update marker appearance - scale up on touch
+            markerIcon.setAttribute('width', '36');
+            markerIcon.setAttribute('height', '36');
+            markerIcon.style.transform = 'translate(-3px, -3px)';
             
             // Force label to stay visible
             ensureLabelsVisible();
@@ -169,10 +171,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     tooltip.style.display = 'none';
                     // Reset all markers
                     markers.forEach(m => {
-                        const dot = m.querySelector('.marker-dot');
-                        if (dot) {
-                            dot.setAttribute('r', '10');
-                            dot.setAttribute('fill', '#086838');
+                        const icon = m.querySelector('.marker-icon');
+                        if (icon) {
+                            icon.setAttribute('width', '30');
+                            icon.setAttribute('height', '30');
+                            icon.style.transform = 'translate(0, 0)';
                         }
                     });
                 }

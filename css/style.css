@@ -878,11 +878,44 @@ ul {
 /* ============================================
    Projects Grid
    ============================================ */
+.project-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.filter-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--white);
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    font-family: var(--font-family);
+}
+
+.filter-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
 .projects-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--spacing-md);
-    margin-top: var(--spacing-md);
+    margin-top: 0;
 }
 
 @media (min-width: 768px) {
@@ -1638,6 +1671,11 @@ ul {
     animation: pulse 2s infinite;
 }
 
+.marker-icon {
+    transition: width 0.3s ease, height 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+}
+
 @keyframes pulse {
     0%, 100% {
         r: 12;
@@ -1654,8 +1692,8 @@ ul {
     pointer-events: none;
     user-select: none;
     fill: var(--white);
-    stroke: var(--dark-gray);
-    stroke-width: 0.5px;
+    stroke: #000000;
+    stroke-width: 2px;
     paint-order: stroke fill;
     font-size: 20px;
     font-weight: bold;
@@ -1700,6 +1738,7 @@ ul {
 .tooltip-count {
     color: var(--dark-gray);
     font-size: 0.95rem;
+    display: none;
 }
 
 .map-legend {
