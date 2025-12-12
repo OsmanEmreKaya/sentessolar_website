@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 subtitle: 'Güneş hikayeniz burada başlıyor!'
             },
             {
-                title: 'Faturalarınızı Güneşe Ödetelim',
+                title: 'Faturalarınızı Güneşe<br>Ödetelim',
                 subtitle: 'Güneşin gücüyle faturalarınızı sıfırlayın, geleceğinizi güvence altına alın.'
             }
         ];
@@ -368,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
                 // Change text
                 currentIndex = (currentIndex + 1) % textSets.length;
-                heroTitle.textContent = textSets[currentIndex].title;
+                heroTitle.innerHTML = textSets[currentIndex].title;
                 heroSubtitle.textContent = textSets[currentIndex].subtitle;
                 
                 // Fade in both title and subtitle
@@ -425,7 +425,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
     
     // Observe service cards, project cards, and feature items
-    const animatedElements = document.querySelectorAll('.service-card, .project-card, .feature-item, .value-card, .team-member');
+    const animatedElements = document.querySelectorAll('.service-card, .project-card, .feature-item, .value-card, .team-member, .stat-item');
     animatedElements.forEach(element => {
         element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
