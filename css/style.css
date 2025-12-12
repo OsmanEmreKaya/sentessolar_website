@@ -485,7 +485,7 @@ ul {
    ============================================ */
 .trusted-companies {
     overflow: hidden;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+    background-color: var(--accent-color);
     position: relative;
 }
 
@@ -496,7 +496,7 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(8, 104, 56, 0.95) 0%, rgba(38, 70, 83, 0.95) 100%);
+    background: transparent;
     z-index: 0;
 }
 
